@@ -101,6 +101,17 @@ const router = app => {
             response.send('Escuela agregada correctamente');
         });
     });
+
+    //Eliminar una escuela
+    app.delete('/escuelas/:id',(request,response) => {
+        const id = request.params.id;
+
+        pool.query('DELETE FROM escuelas WHERE id = ?', (error,result) => {
+            if(error) throw error;
+
+            response.send('Escuela eliminada');
+        });
+    });
 }
 
 
