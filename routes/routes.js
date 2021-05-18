@@ -81,6 +81,15 @@ const router = app => {
             response.send(result);
         });
     });
+
+    //Insertar una nueva escuela
+    app.post('/escuelas', (request,response) => {
+        pool.query('INSERT INTO escuelas SET ?',request.body,(error,result) => {
+            if(error) throw error;
+
+            response.status(201).send('Escuela añadida con el ID: ${result.insertId}');
+        });
+    });
 }
 
 

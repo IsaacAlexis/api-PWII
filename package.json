@@ -1,6 +1,6 @@
 {
   "name": "api",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Practica 1 de Unidad 3... API REST",
   "main": "index.js",
   "scripts": {
