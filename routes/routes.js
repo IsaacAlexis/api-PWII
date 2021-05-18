@@ -70,6 +70,17 @@ const router = app => {
             response.send(result);
         });
     });
+
+    //Mostrar escuelas por ID
+    app.get('/escuelas/:id',(request,response) => {
+        const id = request.params.id;
+
+        pool.query('SELECT * FROM escuelas', (error,result) => {
+            if(error) throw error;
+
+            response.send(result);
+        });
+    });
 }
 
 
