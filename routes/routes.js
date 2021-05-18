@@ -90,6 +90,17 @@ const router = app => {
             response.status(201).send('Escuela añadida con el ID: ${result.insertId}');
         });
     });
+
+    //Actualizar datos de la escuela
+    app.put('/escuelas/:id',(request,response) => {
+        const id = request.params.id;
+
+        pool.query('UPDATE escuelas SET ? WHERE id = ?',[request.body, id], (error,result) => {
+            if(error) throw error;
+
+            response.send('Escuela agregada correctamente');
+        });
+    });
 }
 
 
