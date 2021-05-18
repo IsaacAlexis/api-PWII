@@ -59,6 +59,17 @@ const router = app => {
             response.send('Usuario eliminado');
         });
     });
+
+    //*****Ruta app manejo de Escuelas *****
+
+    //mostrar todas las escuelas
+    app.get('/escuelas',(request,response) => {
+        pool.query('SELECT * FROM escuelas', (error,result) => {
+            if(error) throw error;
+    
+            response.send(result);
+        });
+    });
 }
 
 
