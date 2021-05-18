@@ -6,12 +6,60 @@ const router = app => {
             message: 'Bienvenido a Node.js Express REST API'
         });
     });
+
+    //***** Ruta App Manejo de usuarios *****
+    
+    //mostrar todos los usuarios
+    app.get('/users',(request,response) => {
+        pool.query('SELECT * FROM users', (error,result) => {
+            if(error) throw error;
+    
+            response.send(result);
+        });
+    });
+
+    //Mostrar usuarios por ID
+    app.get('/users/:id',(request,response) => {
+        const id = request.params.id;
+
+        pool.query('SELECT * FROM users', (error,result) => {
+            if(error) throw error;
+
+            response.send(result);
+        });
+    });
+
+    //Insertar un nuevo usuario
+    app.post('/users', (request,response) => {
+        pool.query('INSERT INTO users SET ?',request.body,(error,result) => {
+            if(error) throw error;
+
+            response.status(201).send('Usuario añadido con el ID: ${result.insertId}');
+        });
+    });
+
+    //Actualizar datos del usuario
+    app.put('/users/:id',(request,response) => {
+        const id = request.params.id;
+
+        pool.query('UPDATE users SET ? WHERE id = ?',[request.body, id], (error,result) => {
+            if(error) throw error;
+
+            response.send('Usuario agregado correctamente');
+        });
+    });
+
+    //Eliminar un usuario
+    app.delete('/users/:id',(request,response) => {
+        const id = request.params.id;
+
+        pool.query('DELETE FROM users WHERE id = ?', (error,result) => {
+            if(error) throw error;
+
+            response.send('Usuario eliminado');
+        });
+    });
 }
 
-app.get('/users',(request,response) => {
-    pool.query('SELECT * FROM users', (error,result) => {
-        if(error) throw error;
 
-        response.send(result);
-    });
-});
+module.exports =router;

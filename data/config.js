@@ -1,6 +1,7 @@
 const mysql = require('mysql');
 
 const config = {
+    port:3306,
     host: 'localhost',
     user: 'root',
     password: 'Mald123.',
